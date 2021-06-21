@@ -1,0 +1,32 @@
+{
+    "name": "claassenmarius/php-skynet",
+    "description": "A php package to use the Skynet Courier API.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Claassenmarius\\PhpSkynet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Claassenmarius\\PhpSkynet\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marius Claassen",
+            "email": "marius.claassen@outlook.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    }
+}
