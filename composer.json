@@ -1,6 +1,10 @@
 {
     "name": "claassenmarius/php-skynet",
     "description": "A php package to use the Skynet Courier API.",
+    "keywords": [
+        "claassenmarius",
+        "php-skynet"
+    ],
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -16,17 +20,28 @@
     "authors": [
         {
             "name": "Marius Claassen",
-            "email": "marius.claassen@outlook.com"
+            "email": "marius.claassen@outlook.com",
+            "role": "Software Engineer"
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.3"
     },
     "require": {
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^7.0",
+        "php": "^8.0"
     },
     "scripts": {
+        "psalm": "vendor/bin/psalm",
         "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-    }
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
