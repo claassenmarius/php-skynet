@@ -361,7 +361,7 @@ class SkynetTest extends TestCase
                 new Response(
                     400,
                     ['Content-Type' => 'application/json; charset=utf-8'],
-                    "Bad Request"
+                    "Bad Request."
                 )
             )
         );
