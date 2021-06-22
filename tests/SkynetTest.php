@@ -3,15 +3,12 @@
 
 namespace Claassenmarius\PhpSkynet\Tests;
 
-
 use Claassenmarius\PhpSkynet\Skynet;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Message;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +24,7 @@ class SkynetTest extends TestCase
         $this->mock = new MockHandler();
 
         $client = new Client([
-            'handler' => HandlerStack::create($this->mock)
+            'handler' => HandlerStack::create($this->mock),
         ]);
 
         $this->skynet = new Skynet(
@@ -55,22 +52,22 @@ class SkynetTest extends TestCase
         $this->assertEquals(true, $response->successful());
         $this->assertEquals("{\"SecurityToken\":\"2_03ce4988-43db-45ea-9797-e69befff8d3f\"}", $response->body());
         $this->assertEquals('application/json; charset=utf-8', $response->header('Content-Type'));
-
     }
 
     /** @test */
     public function it_can_validate_suburb_and_postcode_combination()
     {
-        $this->mock->append(new Response(
+        $this->mock->append(
+            new Response(
             200,
             ['Content-Type' => 'application/json; charset=utf-8'],
             true
-            )
+        )
         );
 
         $response = $this->skynet->validateSuburbAndPostalCode([
             'suburb' => 'Brackenfell',
-            'postal-code' => 7560
+            'postal-code' => 7560,
         ]);
 
         $this->assertEquals(true, $response->successful());
@@ -105,7 +102,8 @@ class SkynetTest extends TestCase
             )
         );
         $this->mock->append(
-            new Response(200,
+            new Response(
+                200,
                 ['Content-Type' => 'application/json; charset=utf-8'],
                 $expectedResponse
             )
@@ -136,7 +134,8 @@ class SkynetTest extends TestCase
             )
         );
         $this->mock->append(
-            new Response(200,
+            new Response(
+                200,
                 ['Content-Type' => 'application/json; charset=utf-8'],
                 $expectedResponse
             )
@@ -152,13 +151,12 @@ class SkynetTest extends TestCase
             'parcel-length' => 70,
             'parcel-width' => 80,
             'parcel-height' => 90,
-            'parcel-weight' => 60
+            'parcel-weight' => 60,
         ]);
 
         $this->assertEquals(true, $response->successful());
         $this->assertEquals($expectedResponse, $response->body());
         $this->assertEquals('application/json; charset=utf-8', $response->header('Content-Type'));
-
     }
 
     /** @test */
@@ -206,13 +204,12 @@ class SkynetTest extends TestCase
             'from-postcode' => '7560',
             'to-suburb' => 'Stellenbosch',
             'to-postcode' => '7600',
-            'service-type' => 'ON1'
+            'service-type' => 'ON1',
         ]);
 
         $this->assertEquals(true, $response->successful());
         $this->assertEquals($expectedResponse, $response->body());
         $this->assertEquals('application/json; charset=utf-8', $response->header('Content-Type'));
-
     }
 
     /** @test */
@@ -259,7 +256,7 @@ class SkynetTest extends TestCase
             "parcel-height" => 30,
             "parcel-weight" => 10,
             "parcel-reference" => "12345",
-            "offsite-collection" => true
+            "offsite-collection" => true,
         ]);
 
         $this->assertEquals(true, $response->successful());
@@ -333,7 +330,6 @@ class SkynetTest extends TestCase
         $this->assertEquals(true, $response->successful());
         $this->assertEquals($expectedResponse, $response->body());
         $this->assertEquals('application/json; charset=utf-8', $response->header('Content-Type'));
-
     }
 
     /** @test */
@@ -369,6 +365,5 @@ class SkynetTest extends TestCase
         $this->expectException(ClientException::class);
 
         $response = $this->skynet->securityToken();
-
     }
 }

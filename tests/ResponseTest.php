@@ -3,7 +3,6 @@
 
 namespace Claassenmarius\PhpSkynet\Tests;
 
-
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
@@ -59,7 +58,7 @@ class ResponseTest extends TestCase
     /** @test */
     public function it_returns_all_the_headers_of_a_psr_7_response()
     {
-        foreach($this->response->headers() as $headerValue) {
+        foreach ($this->response->headers() as $headerValue) {
             $this->assertEquals('application/json; charset=utf-8', implode(', ', $headerValue));
         }
     }

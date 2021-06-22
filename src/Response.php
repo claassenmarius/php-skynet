@@ -3,9 +3,7 @@
 
 namespace Claassenmarius\PhpSkynet;
 
-use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
-
 
 class Response
 {
@@ -50,7 +48,7 @@ class Response
      */
     public function json(): mixed
     {
-        if(! $this->decoded) {
+        if (! $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
         }
 
@@ -128,5 +126,4 @@ class Response
     {
         return $this->status() >= 500;
     }
-
 }
