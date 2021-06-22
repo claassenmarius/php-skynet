@@ -5,8 +5,6 @@ namespace Claassenmarius\PhpSkynet;
 
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use Psr\Http\Message\ResponseInterface;
 
 class Skynet
 {
@@ -59,23 +57,15 @@ class Skynet
         string $password,
         string $systemId,
         string $accountNumber,
+        Client $client = null,
     )
     {
         $this->username = $username;
         $this->password = $password;
         $this->systemId = $systemId;
         $this->accountNumber = $accountNumber;
-    }
-
-    /**
-     * Obtain an instance of a Guzzle HTTP client
-     *
-     * @return Client
-     */
-    private function client(): Client
-    {
-        return $this->client = $this->client ?? new Client([
-           'base_uri' => 'https://api.skynet.co.za:3227/api/'
+        $this->client = $client ?: new Client([
+            'base_uri' => 'https://api.skynet.co.za:3227/api/'
         ]);
     }
 
@@ -87,7 +77,7 @@ class Skynet
      */
     public function securityToken(): Response
     {
-        $response =  $this->client()->post('Security/GetSecurityToken', [
+        $response =  $this->client->post('Security/GetSecurityToken', [
             'json' => [
                 "Username" => $this->username,
                 "Password" => $this->password,
@@ -95,21 +85,6 @@ class Skynet
                 "AccountNumber" => $this->accountNumber
             ]
         ]);
-
-//        $promise = $this->client()->postAsync('Security/GetSecurityToken', [
-//            'json' => [
-//                "Username" => $this->username,
-//                "Password" => $this->password,
-//                "SystemId" => $this->systemId,
-//                "AccountNumber" => $this->accountNumber
-//            ]
-//        ]);
-//
-//        $response = $promise->then(
-//            fn (ResponseInterface $response) => $response,
-//            fn (RequestException $e) => $e->getMessage()
-//        )->wait();
-
 
         return new Response($response);
     }
@@ -123,7 +98,7 @@ class Skynet
      */
     public function validateSuburbAndPostalCode(array $location): Response
     {
-        $response = $this->client()->post('Validation/ValidateSuburbPostalCode', [
+        $response = $this->client->post('Validation/ValidateSuburbPostalCode', [
             'json' => [
                 'suburb' => $location['suburb'],
                 'postalCode' => $location['postal-code']
@@ -142,9 +117,9 @@ class Skynet
      */
     public function postalCodesFromSuburb(string $suburb)
     {
-        $response = $this->client()->post('Validation/GetPostalCode', [
+        $response = $this->client->post('Validation/GetPostalCode', [
             'json' => [
-                'SecurityToken' => ($this->securityToken()->json())['SecurityToken'],
+                'SecurityToken' => $this->securityToken()->json()['SecurityToken'],
                 'suburbName' => $suburb
             ]
         ]);
@@ -161,7 +136,7 @@ class Skynet
      */
     public function quote(array $parcelData)
     {
-        $response = $this->client()->post('Financial/GetQuote', [
+        $response = $this->client->post('Financial/GetQuote', [
            'json' => [
                'SecurityToken' => $this->securityToken(),
                'AccountNumber' => $this->accountNumber,
@@ -195,7 +170,7 @@ class Skynet
      */
     public function deliveryETA(array $locations)
     {
-        $response =  $this->client()->post('Waybill/GetWaybillETA', [
+        $response =  $this->client->post('Waybill/GetWaybillETA', [
             'json' => [
                 'SecurityToken' => $this->securityToken(),
                 'AccountNumber' => $this->accountNumber,
@@ -219,16 +194,16 @@ class Skynet
      */
     public function createWaybill(array $waybillData)
     {
-        $response = $this->client()->post('waybill/CreateWaybill', [
+        $response = $this->client->post('waybill/CreateWaybill', [
             'json' => [
-                "SecurityToken" => $this->securityToken(),
+                "SecurityToken" => $this->securityToken()->json()['SecurityToken'],
                 "AccountNumber" => $this->accountNumber,
                 "CompanyName" => $waybillData['company-name'] ?? null,
                 "CustomerReference" => $waybillData['customer-reference'],
                 "WaybillNumber" => $waybillData['waybill-number'] ?? null,
                 "GenerateWaybillNumber" => $waybillData['generate-waybill-number'] ?? false,
                 "ServiceType" => $waybillData['service-type'],
-                "CollectionDate" => $waybillData['collection-date'] ?? null,
+                "CollectionDate" => $waybillData['collection-date'],
                 "DeliveryDate" => $waybillData['delivery-date'] ?? null,
                 "Instructions" => $waybillData['instructions'] ?? null,
                 "FromAddressName" => $waybillData['from-address-name'] ?? null,
@@ -268,7 +243,7 @@ class Skynet
                 "InsuranceType" => $waybillData['insurance-type'] ?? '1',
                 "InsuranceAmount" => $waybillData['insurance-amount'] ?? '0',
                 "Security" => $waybillData['security'] ?? 'N',
-                "ParcelList" => array(
+                "ParcelList" => array([
                     "parcel_number" => "1",
                     "parcel_length" => $waybillData['parcel-length'],
                     "parcel_breadth" => $waybillData['parcel-width'],
@@ -276,7 +251,7 @@ class Skynet
                     "parcel_mass" => $waybillData['parcel-weight'],
                     "parcel_description" => $waybillData['parcel-description'] ?? null,
                     "parcel_reference" => $waybillData['parcel-reference']
-                ),
+                ]),
                 "OffSiteCollection" => $waybillData['offsite-collection']  ?? false
             ]
         ]);
@@ -293,7 +268,7 @@ class Skynet
      */
     public function waybillPOD(string $waybillNumber)
     {
-        $response = $this->client()->post('Waybill/GetWaybillPOD', [
+        $response = $this->client->post('Waybill/GetWaybillPOD', [
             'json' => [
                 'SecurityToken' => $this->securityToken(),
                 'WaybillNumber' => $waybillNumber
@@ -312,8 +287,8 @@ class Skynet
      */
     public function trackWaybill(string $waybillNumber)
     {
-        $response = $this->client()->post('waybill/GetWaybillTracking', [
-            'json' => [
+        $response = $this->client->get('waybill/GetWaybillTracking', [
+            'query' => [
                 'WaybillReference' => $waybillNumber
             ]
         ]);

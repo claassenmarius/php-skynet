@@ -129,6 +129,4 @@ class Response
         return $this->status() >= 500;
     }
 
-    
-
 }
