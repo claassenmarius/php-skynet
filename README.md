@@ -214,5 +214,5 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 If you discover any security related issues, please email marius.claassen@outlook.com instead of using the issue tracker.
 
 ## License
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT Licence (MIT). Please see [Licence File](LICENCE.md) for more information.
 
