@@ -12,35 +12,35 @@ class Skynet
      *
      * @var string
      */
-    private string $username;
+    private $username;
 
     /**
      * Your Skynet account password
      *
      * @var string
      */
-    private string $password;
+    private $password;
 
     /**
      * Your Skynet account System Id
      *
      * @var string
      */
-    private string $systemId;
+    private $systemId;
 
     /**
      * Your Skynet account number
      *
      * @var string
      */
-    private string $accountNumber;
+    private $accountNumber;
 
     /**
      * The Guzzle HTTP client
      *
      * @var Client
      */
-    protected Client $client;
+    protected $client;
 
     /**
      * Create a new Skynet instance
@@ -113,7 +113,7 @@ class Skynet
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function postalCodesFromSuburb(string $suburb)
+    public function postalCodesFromSuburb(string $suburb): Response
     {
         $response = $this->client->post('Validation/GetPostalCode', [
             'json' => [
@@ -132,7 +132,7 @@ class Skynet
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function quote(array $parcelData)
+    public function quote(array $parcelData): Response
     {
         $response = $this->client->post('Financial/GetQuote', [
            'json' => [
@@ -166,7 +166,7 @@ class Skynet
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deliveryETA(array $locations)
+    public function deliveryETA(array $locations): Response
     {
         $response = $this->client->post('Waybill/GetWaybillETA', [
             'json' => [
@@ -190,7 +190,7 @@ class Skynet
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function createWaybill(array $waybillData)
+    public function createWaybill(array $waybillData): Response
     {
         $response = $this->client->post('waybill/CreateWaybill', [
             'json' => [
@@ -264,7 +264,7 @@ class Skynet
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function waybillPOD(string $waybillNumber)
+    public function waybillPOD(string $waybillNumber): Response
     {
         $response = $this->client->post('Waybill/GetWaybillPOD', [
             'json' => [
@@ -283,7 +283,7 @@ class Skynet
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function trackWaybill(string $waybillNumber)
+    public function trackWaybill(string $waybillNumber): Response
     {
         $response = $this->client->get('waybill/GetWaybillTracking', [
             'query' => [

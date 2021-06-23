@@ -12,7 +12,7 @@ class Response
      *
      * @var ResponseInterface
      */
-    protected ResponseInterface $response;
+    protected $response;
 
     /**
      * The decode JSON response
