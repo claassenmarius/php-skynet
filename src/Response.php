@@ -56,7 +56,7 @@ class Response
      *
      * @return array | string | int
      */
-    public function json(): mixed
+    public function json()
     {
         if (! $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
