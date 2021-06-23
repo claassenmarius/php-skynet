@@ -174,7 +174,7 @@ $headers = $response->failed();
 ```
 
 ## Exception Handling
-This package uses the [Guzzle PHP HTTP](https://docs.guzzlephp.org/en/stable/index.html) client behind the scenes to send requests. 
+This package uses the [Guzzle PHP HTTP client](https://docs.guzzlephp.org/en/stable/index.html) behind the scenes to send requests. 
 
 * In the event of a networking error (connection timeout, DNS errors, etc.), a ```GuzzleHttp\Exception\RequestException``` is thrown. This exception extends from ```GuzzleHttp\Exception\TransferException```. Catching this exception will catch any exception that can be thrown while transferring requests.
 ```php
@@ -214,5 +214,5 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 If you discover any security related issues, please email marius.claassen@outlook.com instead of using the issue tracker.
 
 ## License
-The MIT License (MIT). Please see [License File](./LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
