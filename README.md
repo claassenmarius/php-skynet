@@ -30,13 +30,13 @@ codes for a suburb, get a quote for a parcel, get an ETA between two locations, 
 track a waybill. Each method returns a new ```Claassenmarius\PhpSkynet\Response``` which 
 [exposes methods](#response) to inspect the response.
 
-####Get a security token
+#### Get a security token
 
 ```php
 $response = $skynet->securityToken();
 ```
 
-####Validate a suburb and postal code combination
+#### Validate a suburb and postal code combination
 ```php
 $response = $skynet->validateSuburbAndPostalCode([
     'suburb' => 'Brackenfell',
@@ -44,12 +44,12 @@ $response = $skynet->validateSuburbAndPostalCode([
 ]);
 ```
 
-####Get a list of postal codes for a suburb
+#### Get a list of postal codes for a suburb
 ```php
 $response = $skynet->postalCodesFromSuburb('Brackenfell');
 ```
 
-####Get a quote for a parcel
+#### Get a quote for a parcel
 ```php
 $response = $skynet->quote([
     'collect-city' => 'Brackenfell',
@@ -65,7 +65,7 @@ $response = $skynet->quote([
 ]);
 ```
 
-####Get ETA between two locations
+#### Get ETA between two locations
 ```php
 $response = $skynet->deliveryETA([
     'from-suburb' => 'Brackenfell',
@@ -76,7 +76,7 @@ $response = $skynet->deliveryETA([
 ]);
 ```
 
-####Generate a waybill
+#### Generate a waybill
 ```php
 $response = $skynet->createWaybill([
     "customer-reference" => "Customer Reference",
@@ -102,72 +102,72 @@ $response = $skynet->createWaybill([
 ]);
 ```
 
-####Get a waybill POD Image
+#### Get a waybill POD Image
 ```php
 $response = $skynet->waybillPOD('your-waybill-number');
 ```
 
-####Track a waybill
+#### Track a waybill
 ```php
 $response = $skynet->trackWaybill('your-waybill-number');
 ```
 
-###Response
+### Response
 ```Claassenmarius\PhpSkynet\Response``` provides the following methods to inspect the response.
 
-####Get the body of the response in string format:
+#### Get the body of the response in string format:
 ```php
 $securityToken = $response->body(); 
 // "{"SecurityToken":"2_f77e4922-1407-485e-a0fa-4fdd5c29e9ca"}" 
 ```
 
-####Get the JSON decoded body of the response as an array or scalar value
+#### Get the JSON decoded body of the response as an array or scalar value
 ```php
 $securityToken = $response->json(); 
 // ["SecurityToken" => "2_c767aa41-bca8-4084-82a0-69d8e27fba2c"] 
 ```
 
-####Get the JSON decoded body of the response as an object.
+#### Get the JSON decoded body of the response as an object.
 ```php
 $securityToken = $response->object(); 
 // { +"SecurityToken": "2_c767aa41-bca8-4084-82a0-69d8e27fba2c" }
 ```
-####Get a header from the response.
+#### Get a header from the response.
 ```php
 $header = $response->header('Content-Type'); 
 // "application/json; charset=utf-8"
 ```
 
-####Get the headers from the response.
+#### Get the headers from the response.
 ```php
 $headers = $response->headers(); 
 // Return an array of all headers
 ```
-####Get the status code of the response.
+#### Get the status code of the response.
 ```php
 $headers = $response->status(); 
 // 200
 ```
 
-####Determine if the request was successful (Whether status code ```>=200``` & ```<300```)
+#### Determine if the request was successful (Whether status code ```>=200``` & ```<300```)
 ```php
 $headers = $response->successful(); 
 // true
 ```
 
-####Determine if the response code was "OK". (Status code === ```200```)
+#### Determine if the response code was "OK". (Status code === ```200```)
 ```php
 $headers = $response->ok(); 
 // true
 ```
 
-####Determine if server error occurred. (Whether status code ```>=500```)
+#### Determine if server error occurred. (Whether status code ```>=500```)
 ```php
 $headers = $response->serverError(); 
 // false
 ```
 
-####Determine if client or server error occurred.
+#### Determine if client or server error occurred.
 ```php
 $headers = $response->failed(); 
 // false
