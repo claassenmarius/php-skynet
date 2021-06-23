@@ -11,7 +11,7 @@ composer require claassenmarius/php-skynet
 
 ## Usage
 
-Create an instance of [```Claassenmarius\PhpSkynet\SkynetSkynet```](./src/Skynet.php), passing in your skynet username,
+Create an instance of [`Claassenmarius\PhpSkynet\SkynetSkynet`](./src/Skynet.php), passing in your skynet username,
 password, account number and system id.
 
 
@@ -27,7 +27,7 @@ $skynet = new Skynet(
 ```
 The following methods are available to [get a security token](#get-a-security-token), [validate a suburb/postcode combination](#validate-a-suburb-and-postal-code-combination), [get a list of postal
 codes for a suburb](#get-a-list-of-postal-codes-for-a-suburb), [get a quote for a parcel](#get-a-quote-for-a-parcel), [get an ETA between two locations](#get-eta-between-two-locations), [generate a waybill](#generate-a-waybill), [obtain a POD image](#get-a-waybill-pod-image) and
-[track a waybill](#track-a-waybill). Each method returns a new [```Claassenmarius\PhpSkynet\Response```](./src/Response.php) which 
+[track a waybill](#track-a-waybill). Each method returns a new [`Claassenmarius\PhpSkynet\Response`](./src/Response.php) which 
 [exposes methods](#response) to inspect the response.
 
 ### Get a security token
@@ -113,7 +113,7 @@ $response = $skynet->trackWaybill('your-waybill-number');
 ```
 
 ## Response
-[```Claassenmarius\PhpSkynet\Response```](./src/Response.php) provides the following methods to inspect the response.
+[`Claassenmarius\PhpSkynet\Response`](./src/Response.php) provides the following methods to inspect the response.
 
 ### Get the body of the response in string format:
 ```php
@@ -149,19 +149,19 @@ $headers = $response->status();
 // 200
 ```
 
-### Determine if the request was successful (Whether status code ```>=200``` & ```<300```)
+### Determine if the request was successful (Whether status code `>=200` & `<300`)
 ```php
 $headers = $response->successful(); 
 // true
 ```
 
-### Determine if the response code was "OK". (Status code === ```200```)
+### Determine if the response code was "OK". (Status code === `200`)
 ```php
 $headers = $response->ok(); 
 // true
 ```
 
-### Determine if server error occurred. (Whether status code ```>=500```)
+### Determine if server error occurred. (Whether status code `>=500`)
 ```php
 $headers = $response->serverError(); 
 // false
@@ -176,7 +176,7 @@ $headers = $response->failed();
 ## Exception Handling
 This package uses the [Guzzle PHP HTTP client](https://docs.guzzlephp.org/en/stable/index.html) behind the scenes to send requests. 
 
-* In the event of a networking error (connection timeout, DNS errors, etc.), a ```GuzzleHttp\Exception\RequestException``` is thrown. This exception extends from ```GuzzleHttp\Exception\TransferException```. Catching this exception will catch any exception that can be thrown while transferring requests.
+* In the event of a networking error (connection timeout, DNS errors, etc.), a GuzzleHttp\Exception\RequestException` is thrown. This exception extends from `GuzzleHttp\Exception\TransferException`. Catching this exception will catch any exception that can be thrown while transferring requests.
 ```php
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
@@ -187,8 +187,8 @@ try {
     // Handle the exception
 }
 ```
-* A ```GuzzleHttp\Exception\ConnectException``` exception is thrown in the event of a networking error. This exception extends from ```GuzzleHttp\Exception\TransferException```.
-* A ```GuzzleHttp\Exception\ClientException``` is thrown for 400 level errors if the http_errors request option is set to true. This exception extends from ```GuzzleHttp\Exception\BadResponseException``` and ```GuzzleHttp\Exception\BadResponseException``` extends from ```GuzzleHttp\Exception\RequestException```.
+* A `GuzzleHttp\Exception\ConnectException` exception is thrown in the event of a networking error. This exception extends from `GuzzleHttp\Exception\TransferException`.
+* A `GuzzleHttp\Exception\ClientException` is thrown for 400 level errors if the http_errors request option is set to true. This exception extends from `GuzzleHttp\Exception\BadResponseException` and `GuzzleHttp\Exception\BadResponseException` extends from `GuzzleHttp\Exception\RequestException`.
 ```php
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
@@ -199,7 +199,12 @@ try {
     // Handle the exception
 }
 ```
-* A ```GuzzleHttp\Exception\ServerException``` is thrown for 500 level errors if the http_errors request option is set to true. This exception extends from ```GuzzleHttp\Exception\BadResponseException```.
+* A `GuzzleHttp\Exception\ServerException` is thrown for 500 level errors if the http_errors request option is set to true. This exception extends from ```GuzzleHttp\Exception\BadResponseException```.
+
+## Testing
+```bash
+composer test
+```
 
 ## Changelog
 
