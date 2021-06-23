@@ -12,7 +12,7 @@ class Response
      *
      * @var ResponseInterface
      */
-    protected $response;
+    protected ResponseInterface $response;
 
     /**
      * The decode JSON response
@@ -54,9 +54,9 @@ class Response
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
-     * @return array | string | int
+     * @return mixed
      */
-    public function json()
+    public function json(): mixed
     {
         if (! $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
