@@ -8,9 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class ResponseTest extends TestCase
 {
-    public Response $psr7Response;
+    public $psr7Response;
 
-    public \Claassenmarius\PhpSkynet\Response $response;
+    public $response;
 
     protected function setUp(): void
     {

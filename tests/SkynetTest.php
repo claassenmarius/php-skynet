@@ -15,9 +15,9 @@ use PHPUnit\Framework\TestCase;
 
 class SkynetTest extends TestCase
 {
-    public MockHandler $mock;
+    public $mock;
 
-    public Skynet $skynet;
+    public $skynet;
 
     protected function setUp(): void
     {
