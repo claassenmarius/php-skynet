@@ -7,8 +7,10 @@ use Psr\Http\Message\ResponseInterface;
 
 class Response
 {
-    /*
+    /**
      * The underlying PSR response
+     *
+     * @var ResponseInterface
      */
     protected ResponseInterface $response;
 
@@ -19,8 +21,10 @@ class Response
      */
     protected $decoded;
 
-    /*
+    /**
      * Create a new response instance
+     *
+     * @param ResponseInterface $response
      */
     public function __construct(ResponseInterface $response)
     {
@@ -29,22 +33,28 @@ class Response
 
     /**
      * Get the underlying PSR response for the response.
+     *
+     * @return ResponseInterface
      */
     public function toPsrResponse(): ResponseInterface
     {
         return $this->response;
     }
 
-    /*
+    /**
      * Get the body of the response
+     *
+     * @return string
      */
     public function body(): string
     {
         return (string) $this->response->getBody();
     }
 
-    /*
+    /**
      * Get the JSON decoded body of the response as an array or scalar value.
+     *
+     * @return mixed
      */
     public function json(): mixed
     {
@@ -55,56 +65,71 @@ class Response
         return $this->decoded;
     }
 
-    /*
+    /**
      * Get the JSON decoded body of the response as an object.
+     *
+     * @return object
      */
     public function object(): object
     {
         return json_decode($this->body(), false);
     }
 
-    /*
+    /**
      * Get a header from the response.
+     *
+     * @param string $header
+     * @return string
      */
     public function header(string $header): string
     {
         return $this->response->getHeaderLine($header);
     }
 
-    /*
+    /**
      * Get the headers from the response.
+     *
+     * @return array
      */
     public function headers(): array
     {
         return $this->response->getHeaders();
     }
 
-    /*
+    /**
      * Get the status code of the response.
+     *
+     * @return int
      */
     public function status(): int
     {
         return $this->response->getStatusCode();
     }
 
-    /*
+    /**
      * Determine if the request was successful
+     *
+     * @return bool
      */
     public function successful(): bool
     {
         return $this->status() >= 200 && $this->status() < 300;
     }
 
-    /*
+    /**
      * Determine if the response code was "OK".
+     *
+     * @return bool
      */
-    public function ok()
+    public function ok(): bool
     {
         return $this->status() === 200;
     }
 
-    /*
+    /**
      * Determine if the response indicates a client or server error occurred.
+     *
+     * @return bool
      */
     public function failed(): bool
     {
@@ -113,6 +138,8 @@ class Response
 
     /**
      * Determine if the response indicates a client error occurred.
+     *
+     * @return bool
      */
     public function clientError(): bool
     {
@@ -121,6 +148,8 @@ class Response
 
     /**
      * Determine if the response indicates a server error occurred.
+     *
+     * @return bool
      */
     public function serverError(): bool
     {

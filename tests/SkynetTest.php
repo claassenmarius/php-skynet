@@ -59,10 +59,10 @@ class SkynetTest extends TestCase
     {
         $this->mock->append(
             new Response(
-            200,
-            ['Content-Type' => 'application/json; charset=utf-8'],
-            true
-        )
+                200,
+                ['Content-Type' => 'application/json; charset=utf-8'],
+                true
+            )
         );
 
         $response = $this->skynet->validateSuburbAndPostalCode([
