@@ -173,12 +173,46 @@ $headers = $response->failed();
 // false
 ```
 
+## Exception Handling
+This package uses the [Guzzle PHP HTTP](https://docs.guzzlephp.org/en/stable/index.html) client behind the scenes to send requests. 
 
+* In the event of a networking error (connection timeout, DNS errors, etc.), a ```GuzzleHttp\Exception\RequestException``` is thrown. This exception extends from ```GuzzleHttp\Exception\TransferException```. Catching this exception will catch any exception that can be thrown while transferring requests.
+```php
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\RequestException;
+
+try {
+    $response = $skynet->securityToken();
+} catch(RequestException $e) {
+    // Handle the exception
+}
+```
+* A ```GuzzleHttp\Exception\ConnectException``` exception is thrown in the event of a networking error. This exception extends from ```GuzzleHttp\Exception\TransferException```.
+* A ```GuzzleHttp\Exception\ClientException``` is thrown for 400 level errors if the http_errors request option is set to true. This exception extends from ```GuzzleHttp\Exception\BadResponseException``` and ```GuzzleHttp\Exception\BadResponseException``` extends from ```GuzzleHttp\Exception\RequestException```.
+```php
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\ClientException;
+
+try {
+    $response = $skynet->securityToken();
+} catch(ClientException $e) {
+    // Handle the exception
+}
+```
+* A ```GuzzleHttp\Exception\ServerException``` is thrown for 500 level errors if the http_errors request option is set to true. This exception extends from ```GuzzleHttp\Exception\BadResponseException```.
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email marius.claassen@outlook.com instead of using the issue tracker.
 
 ## License
-[MIT](./LICENCE.md)
+The MIT License (MIT). Please see [License File](./LICENSE.md) for more information.
+
