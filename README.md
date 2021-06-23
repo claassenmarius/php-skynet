@@ -1,9 +1,11 @@
 # PHP Skynet
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/claassenmarius/php-skynet.svg?style=flat-square)](https://packagist.org/packages/claassenmarius/php-skynet)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/claassenmarius/php-skynet/run-tests?label=tests)](https://github.com/claassenmarius/php-skynet/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/claassenmarius/php-skynet/Check%20&%20fix%20styling?label=code%20style)](https://github.com/claassenmarius/php-skynet/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Tests](https://github.com/claassenmarius/php-skynet/actions/workflows/run-tests.yml/badge.svg)](https://github.com/claassenmarius/php-skynet/actions/workflows/run-tests.yml)
+[![Check & fix styling](https://github.com/claassenmarius/php-skynet/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/claassenmarius/php-skynet/actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/claassenmarius/php-skynet.svg?style=flat-square)](https://packagist.org/packages/claassenmarius/php-skynet)
+
+
 
 A php package to use the Skynet Courier API.
 
