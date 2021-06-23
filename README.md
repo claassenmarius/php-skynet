@@ -27,7 +27,7 @@ $skynet = new Skynet(
 ```
 The following methods are available to [get a security token](#get-a-security-token), [validate a suburb/postcode combination](#validate-a-suburb-and-postal-code-combination), [get a list of postal
 codes for a suburb](#get-a-list-of-postal-codes-for-a-suburb), [get a quote for a parcel](#get-a-quote-for-a-parcel), [get an ETA between two locations](#get-eta-between-two-locations), [generate a waybill](#generate-a-waybill), [obtain a POD image](#get-a-waybill-pod-image) and
-[track a waybill](#track-a-waybill). Each method returns a new ```Claassenmarius\PhpSkynet\Response``` which 
+[track a waybill](#track-a-waybill). Each method returns a new [```Claassenmarius\PhpSkynet\Response```](./src/Response.php) which 
 [exposes methods](#response) to inspect the response.
 
 #### Get a security token
