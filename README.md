@@ -28,7 +28,7 @@ $skynet = new Skynet(
 The following methods are available to get a security token, validate a suburb/postcode combination, get a list of postal
 codes for a suburb, get a quote for a parcel, get an ETA between two locations, generate a waybill, obtain a POD image and
 track a waybill. Each method returns a new ```Claassenmarius\PhpSkynet\Response``` which 
-[exposes methods](###response) to inspect the response.
+[exposes methods](#Response) to inspect the response.
 
 ####Get a security token
 
