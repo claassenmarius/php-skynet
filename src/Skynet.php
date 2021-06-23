@@ -49,7 +49,7 @@ class Skynet
      * @param string $password
      * @param string $systemId
      * @param string $accountNumber
-     * @return void
+     * @param Client|null $client
      */
     public function __construct(
         string $username,
