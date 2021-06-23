@@ -11,7 +11,7 @@ composer require claassenmarius/php-skynet
 
 ## Usage
 
-Create an instance of ```Claassenmarius\PhpSkynet\SkynetSkynet```, passing in your skynet username,
+Create an instance of [```Claassenmarius\PhpSkynet\SkynetSkynet```](./src/Skynet.php), passing in your skynet username,
 password, account number and system id.
 
 
@@ -25,9 +25,9 @@ $skynet = new Skynet(
   'skynet_account_number'
 );
 ```
-The following methods are available to get a security token, validate a suburb/postcode combination, get a list of postal
-codes for a suburb, get a quote for a parcel, get an ETA between two locations, generate a waybill, obtain a POD image and
-track a waybill. Each method returns a new ```Claassenmarius\PhpSkynet\Response``` which 
+The following methods are available to [get a security token](#get-a-security-token), [validate a suburb/postcode combination](#validate-a-suburb-and-postal-code-combination), [get a list of postal
+codes for a suburb](#get-a-list-of-postal-codes-for-a-suburb), [get a quote for a parcel](#get-a-quote-for-a-parcel), [get an ETA between two locations](#get-eta-between-two-locations), [generate a waybill](#generate-a-waybill), [obtain a POD image](#get-a-waybill-pod-image) and
+[track a waybill](#track-a-waybill). Each method returns a new ```Claassenmarius\PhpSkynet\Response``` which 
 [exposes methods](#response) to inspect the response.
 
 #### Get a security token
