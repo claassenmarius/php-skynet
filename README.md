@@ -16,7 +16,7 @@ composer require claassenmarius/php-skynet
 
 ## Usage
 
-Create an instance of [`Claassenmarius\PhpSkynet\SkynetSkynet`](./src/Skynet.php), passing in your skynet username,
+Create an instance of [`Claassenmarius\PhpSkynet\Skynet`](./src/Skynet.php), passing in your skynet username,
 password, account number and system id.
 
 
