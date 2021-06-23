@@ -54,7 +54,7 @@ class Response
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
-     * @return mixed
+     * @return array | string | int
      */
     public function json(): mixed
     {
