@@ -2,7 +2,6 @@
 
 [![Tests](https://github.com/claassenmarius/php-skynet/actions/workflows/run-tests.yml/badge.svg)](https://github.com/claassenmarius/php-skynet/actions/workflows/run-tests.yml)
 [![Check & fix styling](https://github.com/claassenmarius/php-skynet/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/claassenmarius/php-skynet/actions/workflows/php-cs-fixer.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/claassenmarius/php-skynet.svg?style=flat-square)](https://packagist.org/packages/claassenmarius/php-skynet)
 
 
 
