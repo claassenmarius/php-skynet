@@ -5,7 +5,7 @@
 
 
 
-A framwork agnostic php package to use the Skynet Courier API.
+A framework agnostic php package to use the Skynet Courier API.
 
 ## Installation
 
